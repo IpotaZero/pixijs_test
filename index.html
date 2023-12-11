@@ -26,12 +26,15 @@
       const sprite = new PIXI.Sprite(resources.image.texture);
       app.stage.addChild(sprite);
 
-      // フィルターを作成
-      const grayFilter = new PIXI.filters.ColorMatrixFilter();
-      grayFilter.desaturate();
+      // GlowFilterを作成
+      const glowFilter = new PIXI.filters.GlowFilter({
+        distance: 15,      // 光の距離
+        outerStrength: 2,  // 外側の強さ
+        color: 0x00ff00,  // 光の色
+      });
 
       // スプライトにフィルターを適用
-      sprite.filters = [grayFilter];
+      sprite.filters = [glowFilter];
     });
   </script>
 </body>
