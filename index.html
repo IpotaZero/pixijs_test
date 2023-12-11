@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>PixiJS Filter Example</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.3.10/pixi.min.js"></script>
+</head>
+
+<body>
+  <script>
+    // PixiJSのアプリケーションを作成
+    const app = new PIXI.Application({
+      width: 800,
+      height: 600,
+      backgroundColor: 0x1099bb,
+    });
+
+    // HTMLのbodyにCanvasを追加
+    document.body.appendChild(app.view);
+
+    // 画像を読み込む
+    const imgURL = './b.png';
+    PIXI.Loader.shared.add('image', imgURL).load((loader, resources) => {
+      // スプライトを作成してステージに追加
+      const sprite = new PIXI.Sprite(resources.image.texture);
+      app.stage.addChild(sprite);
+
+      // フィルターを作成
+      const grayFilter = new PIXI.filters.ColorMatrixFilter();
+      grayFilter.desaturate();
+
+      // スプライトにフィルターを適用
+      sprite.filters = [grayFilter];
+    });
+  </script>
+</body>
+
+</html>
